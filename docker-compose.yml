@@ -1,0 +1,17 @@
+solr:
+  # build: .
+  image: goodguide/solr:4.8.1
+  links:
+    - 'zk:zk'
+  ports:
+    - '8983'
+
+zk:
+  image: jplock/zookeeper
+
+zkweb:
+  image: goodguide/zk-web
+  ports:
+    - '8080'
+  links:
+    - 'zk:zk'

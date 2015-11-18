@@ -1,0 +1,30 @@
+#!/bin/bash
+
+set -e
+
+dir="${SOLR_CONFIG_TO_PUSH:-/tmp/solr_config_to_push}"
+if [ -d $dir ]; then
+  # if a volume was mounted, just cd to it and whatever's there
+  cd "$dir"
+else
+  # otherwise, make the directory, and pull tarball stream from stdin, if '-' if provided as the argument
+  mkdir "$dir"
+  cd "$dir"
+  [[ $1 = - ]] && tar -xvzf /dev/stdin
+fi
+echo "==== $0 ====="
+echo "Using directory $PWD:"
+
+
+if [[ -d configsets ]]; then
+  for configdir in configsets/*/; do
+    configset=$(basename $configdir)
+    zkcli --cmd clear /configs/$configset
+    zkcli --cmd upconfig --confdir $configdir/conf --confname $configset
+  done
+fi
+
+if [[ -f solr.xml ]]; then
+  zkcli --cmd clear /solr.xml
+  zkcli --cmd putfile /solr.xml ./solr.xml
+fi

@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -e
+
+_JAVA_OPTIONS="-Dsolr.solr.home=${SOLR_HOME}"
+
+# if you provide $ZKHOST or docker-link in a Zookeeper container as 'zk', tell solr to run in SolrCloud mode and pull all conf from ZK
+#
+export ZKHOST="${ZKHOST:-"${ZK_PORT_2181_TCP#tcp://}"}"
+
+if [[ -n $ZKHOST ]]; then
+  _JAVA_OPTIONS="${_JAVA_OPTIONS} -DzkHost=${ZKHOST}"
+  _JAVA_OPTIONS="${_JAVA_OPTIONS} -Dsolr.solrxml.location=zookeeper"
+fi
+
+export _JAVA_OPTIONS
+
+exec $@
