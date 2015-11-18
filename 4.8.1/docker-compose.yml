@@ -1,6 +1,6 @@
 solr:
   # build: .
-  image: goodguide/solr:4.8.1
+  image: quay.io/goodguide/solr:4.8.1
   links:
     - 'zk:zk'
   ports:

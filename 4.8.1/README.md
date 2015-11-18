@@ -2,6 +2,14 @@
 
 Dockerfile for running Solr 4.8.1.
 
+[![Docker Repository on Quay](https://quay.io/repository/goodguide/solr/status "Docker Repository on Quay")](https://quay.io/repository/goodguide/solr)
+
+This is built automatically on Quay.io.
+
+```shell
+docker pull quay.io/goodguide/solr:4.8.1
+```
+
 ## Usage
 
 This is meant to be run in Solr Cloud mode, connected to a ZooKeeper cluster.
@@ -21,7 +29,7 @@ See the `docker-compose.yml` for an example of usage.
 There is a tool in the docker container (on the PATH) called `zkcli`. This is a thin wrapper around [the `ZkCLI` tool which ships with Solr.][zkcli] The docs on the Solr site apply to this tool as well, with the extra caveat that the `-zkhost` parameter will be set for you according to the earlier mentioned variable or link that you must use for this container.
 
 ```shell
-docker run --rm --link my-zk:zk goodguide/solr:4.8.1 zkcli -cmd list
+docker run --rm --link my-zk:zk quay.io/goodguide/solr:4.8.1 zkcli -cmd list
 ```
 
 ### push_config_to_zk
@@ -33,7 +41,7 @@ docker run \
     --rm \
     --volume "$PWD:/tmp/solr_config_to_push" \
     --link my-zk:zk \
-    goodguide/solr:4.8.1 \
+    quay.io/goodguide/solr:4.8.1 \
     push_config_to_zk
 ```
 
@@ -46,7 +54,7 @@ tar -cz -C ../my-solr-conf | docker run \
     --rm \
     -i \
     --link my-zk:zk \
-    goodguide/solr:4.8.1 \
+    quay.io/goodguide/solr:4.8.1 \
     push_config_to_zk -
 ```
 
@@ -96,7 +104,7 @@ dockerfile-solr$ docker-compose up -d zk
 Creating dockerfilesolr_zk_1
 
 # push the config into that ZK node
-dockerfile-solr$ docker run --rm --volume "$HOME/path/to/my/solr/config:/tmp/solr_config_to_push" --link dockerfilesolr_zk_1:zk goodguide/solr:4.8.1 push_config_to_zk
+dockerfile-solr$ docker run --rm --volume "$HOME/path/to/my/solr/config:/tmp/solr_config_to_push" --link dockerfilesolr_zk_1:zk quay.io/goodguide/solr:4.8.1 push_config_to_zk
 ...
 
 # then start the solr container
