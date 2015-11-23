@@ -1,4 +1,4 @@
-FROM goodguide/base-oracle-java:alpine.java-8u88b17
+FROM quay.io/goodguide/oracle-java:alpine.java-8u66b17
 
 ENV SOLR_VERSION=4.8.1 \
     SOLR_DOWNLOAD_SHA1SUM=186885be34f8e0ad7dd6e7d6c572d5e80e2d236d \
@@ -24,7 +24,6 @@ RUN set -x \
       curl \
       tar \
  && rm -rf /tmp/* /var/cache/apk/* \
-
 
 # clean up unneeded solr components
  && rm -rf \
