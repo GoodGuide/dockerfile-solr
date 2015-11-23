@@ -9,7 +9,7 @@ if [[ -z $ZKHOST ]]; then
   exit 1
 fi
 
-export CLASSPATH="$SOLR_WEBAPP_DIR/solr-webapp/WEB-INF/lib/*:$SOLR_WEBAPP_DIR/lib/ext/*"
-export _JAVA_OPTIONS="$_JAVA_OPTIONS -Dlog4j.configuration=file:$SOLR_WEBAPP_DIR/scripts/cloud-scripts/log4j.properties"
+export CLASSPATH="$SOLR_WEBAPP_DIR/solr-libs-for-zkcli/*:$SOLR_WEBAPP_DIR/lib/ext/*"
+export _JAVA_OPTIONS="$_JAVA_OPTIONS -Dlog4j.configuration=file:$SOLR_WEBAPP_DIR/resources/log4j.properties"
 
 java org.apache.solr.cloud.ZkCLI --zkhost "$ZKHOST" $@
