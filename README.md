@@ -1,6 +1,6 @@
 # dockerfile-solr
 
-Dockerfile for running Solr 4.8.1.
+Dockerfile for running Solr 4.8.1, built upon Alpine Linux 3.2.
 
 [![Docker Repository on Quay](https://quay.io/repository/goodguide/solr/status "Docker Repository on Quay")](https://quay.io/repository/goodguide/solr)
 
