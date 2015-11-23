@@ -53,13 +53,11 @@ RUN set -x \
 COPY log4j.properties $SOLR_WEBAPP_DIR/resources/
 
 # copy executables to PATH
-COPY docker/push_config_to_zk /usr/local/bin/
-COPY docker/zkcli             /usr/local/bin/
-COPY docker/docker-wrapper    /bin/
+COPY docker/* /usr/local/bin/
 
 VOLUME $SOLR_HOME
 
 EXPOSE 8983
 WORKDIR $SOLR_WEBAPP_DIR
-ENTRYPOINT ["/bin/docker-wrapper"]
+ENTRYPOINT ["/usr/local/bin/docker-wrapper"]
 CMD ["java", "-jar", "start.jar"]
