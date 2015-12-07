@@ -43,6 +43,11 @@ RUN set -x \
  && cd "$SOLR_WEBAPP_DIR/solr-libs-for-zkcli" \
  && jar -xvf $SOLR_WEBAPP_DIR/webapps/solr.war \
       WEB-INF/lib/commons-cli-1.2.jar \
+      WEB-INF/lib/commons-codec-1.9.jar \
+      WEB-INF/lib/commons-configuration-1.6.jar \
+      WEB-INF/lib/commons-fileupload-1.2.1.jar \
+      WEB-INF/lib/commons-lang-2.6.jar \
+      WEB-INF/lib/commons-io-2.1.jar \
       WEB-INF/lib/solr-core-${SOLR_VERSION}.jar \
       WEB-INF/lib/solr-solrj-${SOLR_VERSION}.jar \
       WEB-INF/lib/zookeeper-3.4.6.jar \
