@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# run this while piping in a gzipped-tar stream of a solr dump
+
+set -e -x -u
+
+cd $SOLR_HOME
+
+find . -depth -not \( -name . -o -name .. \) -exec rm -vrf {} + >&2
+
+tar -xvzf - >&2
