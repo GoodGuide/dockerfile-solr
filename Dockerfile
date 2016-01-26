@@ -1,4 +1,4 @@
-FROM quay.io/goodguide/oracle-java:alpine-3.2-java-8.66.17-0
+FROM quay.io/goodguide/oracle-java:alpine-3.3-java-8.72.15-1
 
 ENV SOLR_VERSION=4.8.1 \
     SOLR_DOWNLOAD_SHA1SUM=186885be34f8e0ad7dd6e7d6c572d5e80e2d236d \
