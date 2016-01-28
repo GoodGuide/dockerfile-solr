@@ -10,11 +10,11 @@ else
   # otherwise, make the directory, and pull tarball stream from stdin, if '-' if provided as the argument
   mkdir "$dir"
   cd "$dir"
-  [[ $1 = - ]] && tar -xvzf /dev/stdin
+  [[ $1 = - ]] && tar -xzf /dev/stdin
 fi
+
 echo "==== $0 ====="
 echo "Using directory $PWD:"
-
 
 if [[ -d configsets ]]; then
   for configdir in configsets/*/; do
